@@ -1,0 +1,120 @@
+@import 'styles/default.css';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  min-width: 320px;
+  margin: 0;
+  background-color: var(--white);
+  font-family: var(--font-primary);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--black);
+  overflow-x: hidden;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  line-height: normal;
+}
+
+figure {
+  display: block;
+  margin: 0;
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+input,
+textarea {
+  box-shadow: none;
+  border-radius: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  outline: none;
+}
+
+input,
+button {
+  appearance: none;
+}
+
+input {
+  padding: 10px 15px;
+  border: 1px solid var(--black);
+  border-radius: 4px;
+}
+
+button {
+  padding: 7px;
+  border: 1px solid var(--black);
+  border-radius: 4px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+}
