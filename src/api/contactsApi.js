@@ -15,6 +15,6 @@ export const addContactApi = async (newContact) => {
 }
 
 export const deleteContactApi = async (id) => {
-  const response = await instance.delete(`/contacts/${id}`)
-  return response
+  const { data } = await instance.delete(`/contacts/${id}`)
+  return data
 }
