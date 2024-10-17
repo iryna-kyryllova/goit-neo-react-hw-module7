@@ -9,9 +9,9 @@ export const fetchContactsApi = async () => {
   return data
 }
 
-export const addContactApi = async (data) => {
-  const response = await instance.post('/contacts', data)
-  return response
+export const addContactApi = async (newContact) => {
+  const { data } = await instance.post('/contacts', newContact)
+  return data
 }
 
 export const deleteContactApi = async (id) => {

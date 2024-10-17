@@ -1,5 +1,6 @@
 import { FaUser } from 'react-icons/fa'
 import { FaPhone } from 'react-icons/fa6'
+import { RiDeleteBin6Line } from 'react-icons/ri'
 import styles from './Contact.module.css'
 
 const Contact = ({ data, deleteContact }) => {
@@ -15,8 +16,8 @@ const Contact = ({ data, deleteContact }) => {
           {data.number}
         </li>
       </ul>
-      <button type='button' onClick={() => deleteContact(data.id)}>
-        Delete
+      <button type='button' className={styles.btn} onClick={() => deleteContact(data.id)}>
+        <RiDeleteBin6Line />
       </button>
     </li>
   )
