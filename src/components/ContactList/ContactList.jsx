@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { selectFilteredContacts } from '../../redux/selectors'
-import { selectContacts } from '../../redux/contactsSlice'
+import { selectContacts, selectFilteredContacts } from '../../redux/contactsSlice'
 import { deleteContact } from '../../redux/contactsOps'
 import Contact from '../Contact/Contact'
+import Loader from '../Loader/Loader'
 import styles from './ContactList.module.css'
 
 const ContactList = () => {
@@ -17,7 +17,7 @@ const ContactList = () => {
 
   return (
     <div className={styles.section}>
-      {loading && <div>Loading...</div>}
+      {loading && <Loader />}
       {error && <div>Oops... {error}</div>}
       {items.length > 0 && (
         <ul className={styles.list}>
