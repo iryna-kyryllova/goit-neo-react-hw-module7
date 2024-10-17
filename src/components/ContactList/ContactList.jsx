@@ -1,12 +1,19 @@
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { selectFilteredContacts } from '../../redux/selectors'
-import { deleteContact } from '../../redux/contactsSlice'
+import { deleteContact, selectContacts } from '../../redux/contactsSlice'
+import { fetchContacts } from '../../redux/contactsOps'
 import Contact from '../Contact/Contact'
 import styles from './ContactList.module.css'
 
 const ContactList = () => {
-  const items = useSelector(selectFilteredContacts)
   const dispatch = useDispatch()
+  const items = useSelector(selectFilteredContacts)
+  const { loading, error } = useSelector(selectContacts)
+
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [dispatch])
 
   const deleteContactHandler = (id) => {
     dispatch(deleteContact(id))
@@ -14,13 +21,13 @@ const ContactList = () => {
 
   return (
     <ul className={styles.contacts}>
-      {items.length > 0 ? (
+      {loading && <div>Loading...</div>}
+      {error && <div>Oops... {error}</div>}
+      {items.length > 0 &&
         items.map((contact) => (
           <Contact key={contact.id} data={contact} deleteContact={deleteContactHandler} />
-        ))
-      ) : (
-        <div>No contacts.</div>
-      )}
+        ))}
+      {items.length === 0 && !loading && !error && <div>No contacts.</div>}
     </ul>
   )
 }

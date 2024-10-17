@@ -5,6 +5,8 @@ import { selectNameFilter } from './filtersSlice'
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
   (contacts, filter) => {
-    return contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()))
+    return contacts.items.filter((contact) =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    )
   }
 )
