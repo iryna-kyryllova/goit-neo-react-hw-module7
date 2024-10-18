@@ -7,7 +7,7 @@ const SearchBox = () => {
   const dispatch = useDispatch()
 
   const searchValue = useSelector(selectNameFilter)
-  const { items } = useSelector(selectContacts)
+  const items = useSelector(selectContacts)
 
   const handleOnChange = ({ target }) => {
     dispatch(changeFilter(target.value))

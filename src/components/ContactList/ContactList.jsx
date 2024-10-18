@@ -1,5 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { selectContacts, selectFilteredContacts } from '../../redux/contactsSlice'
+import toast from 'react-hot-toast'
+import {
+  selectContactsLoading,
+  selectContactsError,
+  selectFilteredContacts
+} from '../../redux/contactsSlice'
 import { deleteContact } from '../../redux/contactsOps'
 import Contact from '../Contact/Contact'
 import Loader from '../Loader/Loader'
@@ -9,10 +14,13 @@ const ContactList = () => {
   const dispatch = useDispatch()
 
   const items = useSelector(selectFilteredContacts)
-  const { loading, error } = useSelector(selectContacts)
+  const loading = useSelector(selectContactsLoading)
+  const error = useSelector(selectContactsError)
 
   const deleteContactHandler = (id) => {
     dispatch(deleteContact(id))
+      .unwrap()
+      .then((res) => toast.success(`Contact ${res.name} successfully deleted!`))
   }
 
   return (

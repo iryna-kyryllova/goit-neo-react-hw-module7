@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import toast from 'react-hot-toast'
 import { fetchContactsApi, addContactApi, deleteContactApi } from 'api/contactsApi'
 
-export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (data, thunkAPI) => {
+export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (_, thunkAPI) => {
   try {
     const response = await fetchContactsApi()
     return response
@@ -11,21 +10,19 @@ export const fetchContacts = createAsyncThunk('contacts/fetchAll', async (data, 
   }
 })
 
-export const addContact = createAsyncThunk('contacts/addContact', async (data, thunkAPI) => {
+export const addContact = createAsyncThunk('contacts/addContact', async (contact, thunkAPI) => {
   try {
-    const response = await addContactApi(data)
-    toast.success(`Contact ${response.name} successfully added!`)
+    const response = await addContactApi(contact)
     return response
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message)
   }
 })
 
-export const deleteContact = createAsyncThunk('contacts/deleteContact', async (data, thunkAPI) => {
+export const deleteContact = createAsyncThunk('contacts/deleteContact', async (id, thunkAPI) => {
   try {
-    const response = await deleteContactApi(data)
-    toast.success(`Contact ${response.name} successfully deleted!`)
-    return response.id
+    const response = await deleteContactApi(id)
+    return response
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message)
   }

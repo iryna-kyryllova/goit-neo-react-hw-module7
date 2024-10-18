@@ -2,6 +2,7 @@ import { useId } from 'react'
 import { useDispatch } from 'react-redux'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import toast from 'react-hot-toast'
 import { addContact } from '../../redux/contactsOps'
 import styles from './ContactForm.module.css'
 
@@ -17,6 +18,8 @@ const ContactForm = () => {
 
   const handleSubmit = (values, actions) => {
     dispatch(addContact(values))
+      .unwrap()
+      .then((res) => toast.success(`Contact ${res.name} successfully added!`))
     actions.resetForm()
   }
 
